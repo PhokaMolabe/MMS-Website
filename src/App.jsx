@@ -1,27 +1,34 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
-import Hero from './components/Hero'
-import Services from './components/Services'
-import Work from './components/Work'
-import About from './components/About'
-import Process from './components/Process'
-import Testimonials from './components/Testimonials'
-import Contact from './components/Contact'
 import Footer from './components/Footer'
+import Home from './pages/Home'
+import About from './pages/About'
+import Products from './pages/Products'
+import ProductCategory from './pages/ProductCategory'
+import Gallery from './pages/Gallery'
+import Contact from './pages/Contact'
+import ScrollToTop from './components/ScrollToTop'
 
-export default function App() {
+function App() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#0A0A0A', color: '#FFFFFF' }}>
-      <Header />
-      <main>
-        <Hero />
-        <Services />
-        <Work />
-        <About />
-        <Process />
-        <Testimonials />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <ScrollToTop />
+      <div className="min-h-screen bg-[#0A0A0A] text-white flex flex-col">
+        <Header />
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/:category" element={<ProductCategory />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   )
 }
+
+export default App
